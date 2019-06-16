@@ -4,13 +4,23 @@
  * Acces 192.168.4.1 to configure WiFi.
 */
 
-#include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
+#include <ESP8266WiFi.h>                        //https://github.com/esp8266/Arduino
 
 //needed for library
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
-#include "src/WiFiManager/WiFiManager.h"         //https://github.com/tzapu/WiFiManager
+#include "src/WiFiManager/WiFiManager.h"        //https://github.com/tzapu/WiFiManager
+#include "src/pubsubclient/src/PubSubClient.h"  //https://github.com/knolleary/pubsubclient
 
+const char* mqtt_server = "nerdparty.holzmolz.de";
+
+WiFiClient espClient;
+void callback(char* topic, byte* payload, unsigned int length);
+PubSubClient client(mqtt_server, 8002, callback, espClient);
+
+long lastMsg = 0;
+char msg[50];
+int value = 0;
 
 void setup() {
     // put your setup code here, to run once:
@@ -29,9 +39,14 @@ void setup() {
 
     //if you get here you have connected to the WiFi
     Serial.println("connected...yeey :)");
+    if (client.connect("arduinoClient", "holymoly", "thisisjustatest")) {
+      client.publish("outTopic","hello world");
+      client.subscribe("inTopic");
+    }
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
-    
+
+  client.loop();
+
 }
