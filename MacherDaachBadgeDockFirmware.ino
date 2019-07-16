@@ -28,9 +28,8 @@ Timezone CE(CEST, CET);
 
 void setup()
 {
-  Serial.begin(115200);
-  Serial.swap();
-  delay(500);
+  Serial.begin(9600);
+  //delay(500);
   
   //WiFiManager
   //Local intialization. Once its business is done, there is no need to keep it around
@@ -47,6 +46,7 @@ void setup()
   udp.begin(localPort);
   //Serial.print("Local port: ");
   //Serial.println(udp.localPort());
+  Serial.swap();
 }
 
 void loop()
