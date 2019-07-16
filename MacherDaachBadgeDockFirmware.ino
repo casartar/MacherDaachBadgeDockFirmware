@@ -101,8 +101,7 @@ void loop()
 }
 
 // send an NTP request to the time server at the given address
-unsigned long sendNTPpacket(IPAddress& address)
-{
+unsigned long sendNTPpacket(IPAddress& address) {
 //  Serial.println("sending NTP packet...");
   // set all bytes in the buffer to 0
   memset(packetBuffer, 0, NTP_PACKET_SIZE);
@@ -126,8 +125,7 @@ unsigned long sendNTPpacket(IPAddress& address)
 }
 
 //Function to print time with time zone
-void printTime(time_t t, char *tz, char *loc)
-{
+void printTime(time_t t, char *tz, char *loc) {
   sPrintI00(hour(t));
   sPrintDigits(minute(t));
   //  sPrintDigits(second(t));
