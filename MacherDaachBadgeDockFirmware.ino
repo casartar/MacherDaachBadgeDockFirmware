@@ -93,7 +93,7 @@ void loop()
     utc = epoch;
 
     //printTime(utc, "UTC", "Universal Coordinated Time");
-    printTime(CE.toLocal(utc, &tcr), tcr -> abbrev, "Landau");
+    printTime(CE.toLocal(utc, &tcr));
     delay(5000);
   }
   // wait ten seconds before asking for the time again
@@ -125,39 +125,9 @@ unsigned long sendNTPpacket(IPAddress& address) {
 }
 
 //Function to print time with time zone
-void printTime(time_t t, char *tz, char *loc) {
-  sPrintI00(hour(t));
-  sPrintDigits(minute(t));
-  //  sPrintDigits(second(t));
-  //  Serial.print(' ');
-  //  Serial.print(dayShortStr(weekday(t)));
-  //  Serial.print(' ');
-  //  sPrintI00(day(t));
-  //  Serial.print(' ');
-  //  Serial.print(monthShortStr(month(t)));
-  //  Serial.print(' ');
-  //  Serial.print(year(t));
-  //  Serial.print(' ');
-  //  Serial.print(tz);
-  //  Serial.print(' ');
-  //  Serial.print(loc);
-  Serial.print("\r");
-}
+void printTime(time_t t) {
+  char timeBuffer[6]; 
 
-//Print an integer in "00" format (with leading zero).
-//Input value assumed to be between 0 and 99.
-void sPrintI00(int val)
-{
-  if (val < 10) Serial.print('0');
-  Serial.print(val, DEC);
-  return;
-}
-
-//Print an integer in ":00" format (with leading zero).
-//Input value assumed to be between 0 and 99.
-void sPrintDigits(int val)
-{
-  Serial.print(':');
-  if (val < 10) Serial.print('0');
-  Serial.print(val, DEC);
+  sprintf(timeBuffer, "%02i:%02i\r", hour(t), minute(t));
+  Serial.print(timeBuffer);
 }
