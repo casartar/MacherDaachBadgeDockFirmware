@@ -32,7 +32,7 @@ const char HTTP_FORM_START[] PROGMEM      = "<form method='get' action='wifisave
 const char HTTP_FORM_PARAM[] PROGMEM      = "<br/><input id='{i}' name='{n}' maxlength={l} placeholder='{p}' value='{v}' {c}>";
 const char HTTP_FORM_END[] PROGMEM        = "<br/><button type='submit'>Speichern</button></form>";
 const char HTTP_SCAN_LINK[] PROGMEM       = "<br/><div class=\"c\"><a href=\"/wifi\">Suche</a></div>";
-const char HTTP_SAVED[] PROGMEM           = "<div>Zugangsdaten gespichert<br />Das Dock müsste jetzt verbunden sein.<br />Wenn es nicht geht versuche dich nochmal mit dem Dock zu verbinden</div>";
+const char HTTP_SAVED[] PROGMEM           = "<div>Zugangsdaten gespeichert<br />Das Dock müsste jetzt verbunden sein.<br />Wenn es nicht geht versuche dich nochmal mit dem Dock zu verbinden</div>";
 const char HTTP_END[] PROGMEM             = "</div></body></html>";
 
 #ifndef WIFI_MANAGER_MAX_PARAMS
@@ -41,7 +41,7 @@ const char HTTP_END[] PROGMEM             = "</div></body></html>";
 
 class WiFiManagerParameter {
   public:
-    /** 
+    /**
         Create custom parameters that can be added to the WiFiManager setup web page
         @id is used for HTTP queries and must not contain spaces nor other special characters
     */
